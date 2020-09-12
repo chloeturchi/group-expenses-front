@@ -8,3 +8,6 @@
 .authentication form {
     margin-bottom: 1rem;
 }
+.auth-backerror {
+    color: red;
+}
