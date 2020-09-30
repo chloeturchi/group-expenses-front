@@ -4,11 +4,11 @@
 ## Introduction
 Frontend part of the app. The back part can be found [here](https://github.com/Monsieur-Wary/group-expenses-back).
 
-## Outils utilisées
-- React, react hooks
-- Javascript, ES6 +
-- TypeScript
-- Jest
+## Tools
+- react, react hooks
+- javascript, ES6 +
+- typeScript
+- jest
 
-## Fabriqué avec
-* [Visual Studio Code](https://code.visualstudio.com/) - Editeur de texte
+## Build with
+* [Visual Studio Code](https://code.visualstudio.com/) - text editor
