@@ -8,6 +8,7 @@ Frontend part of the app. The back part can be found [here](https://github.com/M
 - React, react hooks
 - Javascript, ES6 +
 - TypeScript
+- Jest
 
 ## Fabriqué avec
 * [Visual Studio Code](https://code.visualstudio.com/) - Editeur de texte
