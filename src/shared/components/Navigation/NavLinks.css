@@ -57,12 +57,15 @@
         text-decoration: none;
     }
     .nav-links button {
-        border: 1px solid white;
-        color: white;
+        cursor: pointer;
+        border: 1px solid #292929;
+        color: #292929;
         background: transparent;
+        padding: 0.5rem;
+        font: inherit;
     }
     .nav-links button:hover, .nav-links button:active {
-        background: #f8df00;
-        color: #292929;
+        background: #292929;
+        color: white;
     }
 }

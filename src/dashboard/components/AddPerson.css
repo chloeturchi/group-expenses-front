@@ -1,0 +1,13 @@
+.plus-sign {
+    width: 50px;
+    cursor: pointer;
+}
+
+.add-person__modal-content {
+    padding: 0;
+  }
+  
+.add-person__modal-actions {
+    text-align: right;
+}
+  

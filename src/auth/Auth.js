@@ -17,7 +17,6 @@ import { AuthContext } from '../shared/context/auth-context';
 const Auth = () => {
     const auth = useContext(AuthContext);
     const [isLoginMode, setIsLoginMode] = useState(true);
-    const [backError, setBackError] = useState();
     const { isLoading, error, sendRequest, clearError } = useHttpClient();
     const [formState, inputHandler, setFormData] = useForm(
         {
@@ -54,27 +53,35 @@ const Auth = () => {
 
     const authSubmitHandler = async event => {
         event.preventDefault();
-        setBackError();
         let responseData;
         if (isLoginMode) {
             try {
                 responseData = await sendRequest({
                     query: `
-                            mutation SIGNUP($email: String!, $password: String!) {
-                                signup(
-                                  email: $email
-                                  password: $password
-                                ) {
-                                  email
+                            mutation LOGIN($email: String!, $password: String!) {
+                                login(email: $email, password: $password) {
+                                token
+                                user {
+                                    dashboard {
+                                    expenses {
+                                        id
+                                    }
+                                    persons {
+                                        id
+                                    }
+                                    }
                                 }
-                              }
+                                }
+                            }
                         `,
                     variables: {
                         email: formState.inputs.email.value,
                         password: formState.inputs.password.value
                     }
                 })
-                auth.login(responseData.userId, responseData.token);
+                // console.log(responseData.data.login.token);
+                // console.log(responseData.data.login.user.dashboard.persons);
+                auth.login(responseData.userId, responseData.data.login.token);
             } catch (err) { }
         } else {
             try {
@@ -85,7 +92,7 @@ const Auth = () => {
                                   email: $email
                                   password: $password
                                 ) {
-                                  email
+                                  token
                                 }
                               }
                         `,
@@ -94,11 +101,8 @@ const Auth = () => {
                         password: formState.inputs.password.value
                     }
                 })
-                auth.login(responseData.userId, responseData.token);
+                auth.login(responseData.userId, responseData.data.login.token);
             } catch (err) { }
-        }
-        if (responseData.errors) {
-            setBackError(responseData.errors[0].message)
         }
     }
 
@@ -109,8 +113,8 @@ const Auth = () => {
                 {isLoading && <LoadingSpinner asOverlay />}
                 {isLoginMode ? <h2>Login</h2> : <h2>Signup</h2>}
                 <hr />
-                {backError &&
-                    <p className="auth-backerror">Error: {backError}</p>}
+                {/* {backError && */}
+                    {/* <p className="auth-backerror">Error: {backError}</p>} */}
                 <form onSubmit={authSubmitHandler}>
                     <Input
                         element="input"
@@ -126,7 +130,7 @@ const Auth = () => {
                         id="password"
                         type="password"
                         label="Password"
-                        validators={[VALIDATOR_MINLENGTH(6)]}
+                        validators={[VALIDATOR_MINLENGTH(8)]}
                         errorText="Please enter a valid password, at least 6 characters."
                         onInput={inputHandler}
                     />

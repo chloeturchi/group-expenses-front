@@ -1,3 +1,5 @@
-body {
+body, html {
+    max-height: 100vh;
     margin: 0;
+    text-align: center;
 }

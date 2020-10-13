@@ -1,0 +1,11 @@
+.card-person {
+    margin: 10px;
+    min-height: 300px;
+    min-width: 200px;
+}
+
+.delete-sign {
+    float: right;
+    width: 20px;
+    cursor: pointer;
+}

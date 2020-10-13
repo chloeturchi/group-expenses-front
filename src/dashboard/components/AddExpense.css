@@ -1,0 +1,11 @@
+.plus-sign-expenses {
+    width: 25px;
+    cursor: pointer;
+    margin: 0px 10px;
+}
+
+.add-expenses-block {
+    display: flex;
+    justify-content: center;
+
+}
